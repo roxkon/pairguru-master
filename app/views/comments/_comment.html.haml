@@ -1,11 +1,17 @@
 .container 
-  %span.user= comment.author
-  %br
-  %span.title= comment.title
-  %br
-  %span.content
-    = comment.body
-  %br
-  %span.timestamp
-    Posted #{time_ago_in_words(comment.created_at)} ago. 
-  -# %br= link_to 'Destroy',  movie_comment_path(@movie, comment), data: { confirm: 'Are you sure?' }, method: :delete
+  %h2 Comments
+  - @movie.comments.each do |comment|
+    %p
+      %strong Commenter:
+      = comment.author
+    %p
+      %strong Title
+      = comment.title
+    %p
+      %strong Content
+      = comment.body
+    %p
+      %strong.timestamp 
+        Posted #{time_ago_in_words(comment.created_at)} ago.
+    %p 
+      = link_to "Delete Comment", [comment.movie, comment], method: :delete, data: { confirm: 'Are you sure?' }
