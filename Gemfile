@@ -11,7 +11,7 @@ gem "draper", "3.0.0" # rails 5 compability
 gem "haml-rails"
 gem "jquery-rails"
 gem "sass-rails"
-gem "sqlite3"
+gem "faker"
 gem "uglifier"
 
 group :development do
@@ -28,7 +28,7 @@ end
 group :development, :test do
   gem "capybara"
   gem "factory_girl_rails"
-  gem "faker"
+  gem "sqlite3"
   gem "rspec-rails"
   gem "rubocop"
   gem "simplecov"
@@ -36,4 +36,8 @@ end
 
 group :test do
   gem "shoulda-matchers"
+end
+
+group :production do
+  gem 'pg', '0.18.4'
 end
