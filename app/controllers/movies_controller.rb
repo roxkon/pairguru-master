@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @comments = @movie.comments.paginate(page: params[:page])
+    @comments = @movie.comments.all
   end
 
   def export

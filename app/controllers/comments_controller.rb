@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_movie, only: [:create, :delete]
+  before_action :set_movie, only: [:create, :destroy]
   
   def new
   	@comment = Comment.new(comments_params)
@@ -34,14 +34,19 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:movie_id])
     @comment = Comment.find(params[:id])
-    @comment.destroy
-
+    
+    if current_user.id == @comment.user_id
+      @comment.destroy
+    else
+      flash.now[:error] = "You can't do that!"
+    end
+    
     respond_to do |format|
-      format.html { redirect_to movie_comments_path(@movie) }
+      format.html { redirect_to movie_path(@movie) }
       format.xml  { head :ok }
     end
+  end
   private
 
   def set_movie
