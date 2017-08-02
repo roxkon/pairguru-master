@@ -288,7 +288,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   letter_opener
-  pg (= 0.18.4)
+  pg
   pry-rails
   rails (= 5.1.1)
   rails-erd
