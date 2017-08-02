@@ -1,2 +1,4 @@
-%h2 Add Comment:
-%br= render 'comments/form'
+- if @movie.comments.where(user_id: current_user.id).exists?
+- else
+  %h2 Add Comment:
+  %br= render 'comments/form'
