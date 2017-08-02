@@ -13,6 +13,7 @@ gem "jquery-rails"
 gem "sass-rails"
 gem "faker"
 gem "uglifier"
+gem 'bootstrap_form'
 
 group :development do
   gem "better_errors"
