@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user!, only: [:send_info]
+  before_action :authenticate_user!, only: [:send_info, :show]
 
   expose_decorated(:movies) { Movie.all }
   expose(:movie)
@@ -7,6 +7,11 @@ class MoviesController < ApplicationController
   def send_info
     MovieInfoMailer.send_info(current_user, movie).deliver_now
     redirect_to :back, notice: "Email sent with movie info"
+  end
+
+  def show
+    @movie = Movie.find(params[:id])
+    @comments = @movie.comments.paginate(page: params[:page])
   end
 
   def export

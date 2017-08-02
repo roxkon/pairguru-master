@@ -13,6 +13,9 @@ gem "jquery-rails"
 gem "sass-rails"
 gem "faker"
 gem "uglifier"
+gem 'bootstrap_form'
+gem 'will_paginate'
+gem 'gravatar_image_tag'
 
 group :development do
   gem "better_errors"

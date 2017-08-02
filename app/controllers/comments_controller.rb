@@ -1,12 +1,17 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_movie, only: [:create, :delete]
   
-  def new  	
+  def new
+  	@comment = Comment.new(comments_params)
+  	@comment.user_id = current_user.id
+  	@comment.movie_id = @movie.id
   end
 
   def create
-  	@user = current_user
   	@movie = Movie.find(params[:movie_id])
-  	@comment = @user.comments.create(permit_params)
+  	@comment = @movie.comments.create(comments_params)
+  	@comment.user_id = current_user.id
   	@comment.movie_id = @movie.id
 
   	if @comment.save
@@ -18,7 +23,8 @@ class CommentsController < ApplicationController
   	end
   end
 
-  def index  	
+  def index
+  	@comments = Comment.all
   end
 
   def edit  	
@@ -29,6 +35,11 @@ class CommentsController < ApplicationController
 
   private
 
-  def permit_params  	
+  def set_movie
+  	@movie = Movie.find(params[:movie_id])
+  end
+
+  def comments_params
+    params.require(:comment).permit(:title, :body, :author, :user_id, :movie_id)
   end
 end

@@ -1,0 +1,3 @@
+- unless current_user.comments.where(movie_id: :movie_id).count > 0
+  %h1 Add Comment:
+  %br= render 'comments_form'

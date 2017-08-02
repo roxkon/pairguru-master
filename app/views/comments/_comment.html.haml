@@ -1,0 +1,7 @@
+%li{:id => "comment-#{comment.id}"}
+  %span.user= comment.author
+  %span.title= comment.title
+  %span.content
+    = comment.body
+  %span.timestamp
+    Posted #{time_ago_in_words(comment.created_at)} ago.         
