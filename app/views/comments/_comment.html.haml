@@ -1,7 +1,11 @@
-%li{:id => "comment-#{comment.id}"}
+.container 
   %span.user= comment.author
+  %br
   %span.title= comment.title
+  %br
   %span.content
     = comment.body
+  %br
   %span.timestamp
-    Posted #{time_ago_in_words(comment.created_at)} ago.         
+    Posted #{time_ago_in_words(comment.created_at)} ago. 
+  %br= link_to "usuń", movie_comment_path(@movie), method: :delete, data: { confirm: "Jesteś pewny?" }

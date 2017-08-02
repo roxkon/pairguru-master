@@ -1,7 +1,0 @@
-= bootstrap_form_for [@comment, @movie.comments.build], url: movie_comments_path(@movie), html: { multipart: true }, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-8'  do |f|
-  = f.text_field :title, :placeholder => 'Title'
-  = f.text_area :body, control_col: 'col-sm-8', placeholder: 'Body'
-  = f.hidden_field :user_id, :value => current_user.id
-  = f.hidden_field :author, :value => current_user.try(:name).try(:id)
-  = f.hidden_field :movie_id, :value => @movie.id
-  = f.submit 'Zapisz zmiany', class: 'btn btn-primary col-sm-offset-3'
