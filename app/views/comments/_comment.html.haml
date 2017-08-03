@@ -1,5 +1,5 @@
 .container.comments
-  %h2 Comments
+  %h3 Comment:
   - @movie.comments.each do |comment|
     %p
       %strong Commenter:
@@ -11,8 +11,9 @@
       %strong Content
       = comment.body
     %p
-      = link_to 'Delete Comment', 
-                            movie_comment_path(@movie, comment), 
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' }
+      -if current_user.id == comment.user_id
+        = link_to 'Delete Comment', 
+                              movie_comment_path(@movie, comment), 
+                              method: :delete,
+                              data: { confirm: 'Are you sure?' }
     %hr.comments
