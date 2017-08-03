@@ -24,7 +24,8 @@ class CommentsController < ApplicationController
   end
 
   def index
-  	@comments = Comment.all
+    @comments = Comment.all
+    @last_week_comments = Comment.where(created_at: (Time.now - 7.days)..Time.now)
   end
 
   def edit  	
