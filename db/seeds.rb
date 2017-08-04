@@ -90,7 +90,7 @@ Rails.logger.info "Creating comments..."
   (u+7).times do |n|
     id = n + 1
     title = Faker::Hacker.noun
-    author = "User_1"
+    author = "User_#{user_id}"
     body = Faker::Lorem.paragraph(5)
     Comment.create!(body: body, 
                     created_at: Time.zone.now,
