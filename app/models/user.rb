@@ -25,4 +25,6 @@ class User < ApplicationRecord
 
   validates :phone_number, format: { with: /\A[+]?\d+(?>[- .]\d+)*\z/, allow_nil: true }
   has_many :comments
+
+  scope :last_week_comments, -> { where("created_at >= :date", :date => 1.week.ago) } 
 end

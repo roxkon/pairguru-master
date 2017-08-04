@@ -25,9 +25,9 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
-    @last_week_comments = Comment.where(created_at: (Time.now - 7.days)..Time.now)
-  end
+    @commenters = Comment.last_week.group(:user_id).count.sort_by {|_, v| -v}.to_h
 
+  end
   def edit  	
   end
 
