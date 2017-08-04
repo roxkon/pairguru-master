@@ -85,52 +85,18 @@ end
 
 Rails.logger.info "Creating comments..."
 
-50.times do |n|
-  id = n + 1
-  title = Faker::Hacker.noun
-  author = "User_1"
-  body = Faker::Lorem.paragraph(5)
-  Comment.create!(body: body, 
-                  created_at: Time.zone.now,
-                  title: title,
-                  author: author,
-                  movie_id: "#{id}",
-                  user_id: 1)
+11.times do |u|
+  user_id = 8 + u
+  (u+7).times do |n|
+    id = n + 1
+    title = Faker::Hacker.noun
+    author = "User_1"
+    body = Faker::Lorem.paragraph(5)
+    Comment.create!(body: body, 
+                    created_at: Time.zone.now,
+                    title: title,
+                    author: author,
+                    movie_id: "#{id}",
+                    user_id: user_id)
+  end
 end
-40.times do |n|
-  id = n + 1
-  title = Faker::Hacker.noun
-  author = "User_2"
-  body = Faker::Lorem.paragraph(5)
-  Comment.create!(body: body, 
-                  created_at: Time.zone.now,
-                  title: title,
-                  author: author,
-                  movie_id: id,
-                  user_id: 2)
-end
-51.times do |n|
-  id = n + 1
-  title = Faker::Hacker.noun
-  author = "User_3"
-  body = Faker::Lorem.paragraph(5)
-  Comment.create!(body: body, 
-                  created_at: (Time.now - 1.month),
-                  title: title,
-                  author: author,
-                  movie_id: id,
-                  user_id: 3)
-end
-60.times do |n|
-  id = n + 1
-  title = Faker::Hacker.noun
-  author = "User_5"
-  body = Faker::Lorem.paragraph(5)
-  Comment.create!(body: body, 
-                  created_at: (Time.now - 6.days),
-                  title: title,
-                  author: author,
-                  movie_id: id,
-                  user_id: 5)
-end
-
