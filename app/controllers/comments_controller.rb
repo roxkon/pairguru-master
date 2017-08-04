@@ -24,9 +24,10 @@ class CommentsController < ApplicationController
   end
 
   def index
-  	@comments = Comment.all
-  end
+    @comments = Comment.all
+    @commenters = Comment.last_week.group(:user_id).count.sort_by {|k,v| v}.reverse.to_h
 
+  end
   def edit  	
   end
 
