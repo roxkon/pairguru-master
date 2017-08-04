@@ -3,7 +3,7 @@
     .col-md-3.col-md-offset-3
       %h1 TOP 10 COMMENTERS
       %ul.commenters
-        - @commenters.each do |id, count|
+        - @commenters.first(10).each do |id, count|
           %li= "User_#{id} wrote " + pluralize( count, "comment" )
 
           
