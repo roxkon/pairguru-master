@@ -4,6 +4,6 @@
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(movie), class: 'btn btn-sm btn-default'
   .container.comments  
-    .row.col-md-6.col-md-offset-3
+    .row.col-md-3.col-md-6
       = render 'comments/new'
       = render @comments
