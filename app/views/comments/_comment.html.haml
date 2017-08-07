@@ -1,19 +1,18 @@
 .container.comments
   %h3 Comment:
-  - @movie.comments.each do |comment|
-    %p
-      %strong Commenter:
-      = comment.author
-    %p
-      %strong Title
-      = comment.title
-    %p
-      %strong Content
-      = comment.body
-    %p
-      -if current_user.id == comment.user_id
-        = link_to 'Delete Comment', 
-                              movie_comment_path(@movie, comment), 
-                              method: :delete,
-                              data: { confirm: 'Are you sure?' }
-    %hr.comments
+  %p
+    %strong Commenter:
+    = comment.author
+  %p
+    %strong Title
+    = comment.title
+  %p
+    %strong Content
+    = comment.body
+  %p
+    -if current_user.id == comment.user_id
+      = link_to 'Delete Comment', 
+                            movie_comment_path(@movie, comment), 
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' }
+  %hr.comments

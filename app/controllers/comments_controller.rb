@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_movie, only: [:create, :destroy]
+  before_action :set_comments, only: [:show]
+
+  expose(:comment)
   
   def new
   	@comment = Comment.new(comments_params)
@@ -24,10 +27,9 @@ class CommentsController < ApplicationController
   end
 
   def index
-    @comments = Comment.all
     @commenters = Comment.last_week.group(:user_id).count.sort_by {|k,v| v}.reverse.to_h
-
   end
+  
   def edit  	
   end
 
@@ -49,12 +51,16 @@ class CommentsController < ApplicationController
     end
   end
   private
+  
+    def set_comments
+      @comments = Comment.where(movie_id: :movie_id)
+    end
 
-  def set_movie
-  	@movie = Movie.find(params[:movie_id])
-  end
+    def set_movie
+  	 @movie = Movie.find(params[:movie_id])
+    end
 
-  def comments_params
-    params.require(:comment).permit(:title, :body, :author, :user_id, :movie_id)
-  end
+    def comments_params
+      params.require(:comment).permit(:title, :body, :author, :user_id, :movie_id)
+    end
 end
